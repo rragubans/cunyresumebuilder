@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView02"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scrollbars="vertical">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:id="@+id/TextViewTitle02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/educationdetailstitle"
+            android:textSize="10pt"></TextView>
+
+
+        <EditText
+            android:id="@+id/EditTextName"
+            android:layout_height="wrap_content"
+            android:hint="@string/educationdetailstitle"
+            android:inputType="text"
+            android:layout_width="fill_parent"></EditText>
+
+        <EditText
+            android:id="@+id/EditTextUnderGrad"
+            android:layout_height="wrap_content"
+            android:hint="@string/undergrad_college_name"
+            android:inputType="text"
+            android:layout_width="fill_parent"></EditText>
+
+        <EditText
+            android:id="@+id/EditTextGrad"
+            android:layout_height="wrap_content"
+            android:hint="@string/grad_college_name"
+            android:inputType="text"
+            android:layout_width="fill_parent"></EditText>
+
+        <EditText
+            android:id="@+id/YearsAttendUnderGrad"
+            android:layout_height="wrap_content"
+            android:hint="@string/undergrad_years_attend"
+            android:inputType="text"
+            android:layout_width="fill_parent"></EditText>
+
+        <EditText
+            android:id="@+id/EditTextHighSchool"
+            android:layout_height="wrap_content"
+            android:hint="@string/high_school_attended"
+            android:inputType="text"
+            android:layout_width="fill_parent"></EditText>
+
+
+        <Button
+            android:id="@+id/buttonSendFeedback"
+            android:layout_height="wrap_content"
+            android:text="@string/feedbackbutton"
+            android:onClick="sendFeedback"
+            android:layout_width="fill_parent"></Button>
+
+    </LinearLayout>
+</ScrollView>
