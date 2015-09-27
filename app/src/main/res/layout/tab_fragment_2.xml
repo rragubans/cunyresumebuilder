@@ -17,14 +17,6 @@
             android:text="@string/educationdetailstitle"
             android:textSize="10pt"></TextView>
 
-
-        <EditText
-            android:id="@+id/EditTextName"
-            android:layout_height="wrap_content"
-            android:hint="@string/educationdetailstitle"
-            android:inputType="text"
-            android:layout_width="fill_parent"></EditText>
-
         <EditText
             android:id="@+id/EditTextUnderGrad"
             android:layout_height="wrap_content"
