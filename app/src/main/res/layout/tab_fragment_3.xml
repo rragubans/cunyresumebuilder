@@ -12,7 +12,7 @@
 
 
         <TextView
-            android:id="@+id/TextViewTitle02"
+            android:id="@+id/TextViewTitle03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/job_history"
@@ -30,6 +30,7 @@
             android:id="@+id/EditTextSkill"
             android:layout_height="wrap_content"
             android:hint="@string/skills"
+
             android:inputType="textMultiLine"
             android:layout_width="fill_parent"></EditText>
 
