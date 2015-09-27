@@ -11,8 +11,27 @@ public class ResumeDataSource {
     // Database fields
     private SQLiteDatabase database;
     private SQLLiteHelper dbHelper;
-    private String[] allColumns = { SQLLiteHelper.COLUMN_ID,
-            SQLLiteHelper.COLUMN_NAME };
+    private String[] allColumns = {
+            SQLLiteHelper.COLUMN_ID,
+            SQLLiteHelper.COLUMN_NAME,
+            SQLLiteHelper.COLUMN_ADDRESS,
+            SQLLiteHelper.COLUMN_EMAIL,
+            SQLLiteHelper.COLUMN_LANGUAGES,
+            SQLLiteHelper.COLUMN_OBJECTIVES,
+            SQLLiteHelper.COLUMN_STRENGTH,
+            SQLLiteHelper.COLUMN_HOBBIES,
+            SQLLiteHelper.COLUMN_GENDER,
+            SQLLiteHelper.COLUMN_UNDERGRAD_COLLEGE,
+            SQLLiteHelper.COLUMN_UNDERGRAD_YEARS,
+            SQLLiteHelper.COLUMN_GRAD_COLLEGE,
+            SQLLiteHelper.COLUMN_GRAD_YEARS,
+            SQLLiteHelper.COLUMN_HIGH_SCHOOL,
+            SQLLiteHelper.COLUMN_HIGH_SCHOOL_YRS,
+            SQLLiteHelper.COLUMN_JOB_HISTORY,
+            SQLLiteHelper.COLUMN_SKILLS,
+            SQLLiteHelper.COLUMN_CERTIFICATE,
+            SQLLiteHelper.COLUMN_GROUPS
+    };
 
     public ResumeDataSource(Context context) {
         dbHelper = new SQLLiteHelper(context);
@@ -45,5 +64,4 @@ public class ResumeDataSource {
         resumeInformation.setName(cursor.getString(1));
         return resumeInformation;
     }
-
 }
