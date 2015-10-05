@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:orientation="vertical"
-        android:layout_height="fill_parent">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/TextViewTitle02"
@@ -18,33 +18,53 @@
             android:textSize="10pt"></TextView>
 
         <EditText
-            android:id="@+id/EditTextUnderGrad"
+            android:id="@+id/EditTextEducationLine1"
             android:layout_height="wrap_content"
-            android:hint="@string/undergrad_college_name"
+            android:hint="@string/education_line1"
             android:inputType="text"
             android:layout_width="fill_parent"></EditText>
 
         <EditText
-            android:id="@+id/EditTextGrad"
+            android:id="@+id/EditTextEducationLine2"
             android:layout_height="wrap_content"
-            android:hint="@string/grad_college_name"
+            android:hint="@string/education_line2"
             android:inputType="text"
             android:layout_width="fill_parent"></EditText>
 
         <EditText
-            android:id="@+id/YearsAttendUnderGrad"
+            android:id="@+id/EditTextEducationLine3"
             android:layout_height="wrap_content"
-            android:hint="@string/undergrad_years_attend"
+            android:hint="@string/education_line3"
             android:inputType="text"
             android:layout_width="fill_parent"></EditText>
 
         <EditText
-            android:id="@+id/EditTextHighSchool"
+            android:id="@+id/EditTextEducationLine4"
             android:layout_height="wrap_content"
-            android:hint="@string/high_school_attended"
+            android:hint="@string/education_line4"
             android:inputType="text"
             android:layout_width="fill_parent"></EditText>
 
+        <EditText
+            android:id="@+id/EditTextEducationLine5"
+            android:layout_height="wrap_content"
+            android:hint="@string/education_line5"
+            android:inputType="text"
+            android:layout_width="fill_parent"></EditText>
+
+        <EditText
+            android:id="@+id/EditTextEducationLine6"
+            android:layout_height="wrap_content"
+            android:hint="@string/education_line6"
+            android:inputType="text"
+            android:layout_width="fill_parent"></EditText>
+
+        <EditText
+            android:id="@+id/EditTextEducationLine7"
+            android:layout_height="wrap_content"
+            android:hint="@string/education_line7"
+            android:inputType="text"
+            android:layout_width="fill_parent"></EditText>
 
         <Button
             android:id="@+id/buttonSendFeedback"
