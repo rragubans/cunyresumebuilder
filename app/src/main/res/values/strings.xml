@@ -17,6 +17,15 @@
     <string name="hobbies">Hobbies</string>
     <string name="gender1">M(ale)</string>
     <string name="gender2">F(emale)</string>
+
+    <string name="education_line1">Education Line1:</string>
+    <string name="education_line2">Education Line2:</string>
+    <string name="education_line3">Education Line3:</string>
+    <string name="education_line4">Education Line4:</string>
+    <string name="education_line5">Education Line5:</string>
+    <string name="education_line6">Education Line6:</string>
+    <string name="education_line7">Education Line7:</string>
+
     <string name="undergrad_college_name">UnderGrad College:</string>
     <string name="grad_college_name">Grad College:</string>
     <string name="undergrad_years_attend">Under Graduate Years Attend:</string>
@@ -26,5 +35,13 @@
     <string name="skills">Skills:</string>
     <string name="certificate">Certificate:</string>
     <string name="generate_resume">Generate Resume:</string>
+
+    <string name="summary">Summary:</string>
+    <string name="experience1">Employment 1:</string>
+    <string name="experience2">Employment 2:</string>
+    <string name="experience3">Employment 3:</string>
+    <string name="experience4">Employment 4:</string>
+    <string name="experience5">Employment 5:</string>
+    <string name="experience6">Employment 6:</string>
 
 </resources>
