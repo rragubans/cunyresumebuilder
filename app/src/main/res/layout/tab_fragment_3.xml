@@ -8,8 +8,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:orientation="vertical"
-        android:layout_height="fill_parent">
-
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/TextViewTitle03"
@@ -20,9 +19,44 @@
 
 
         <EditText
-            android:id="@+id/EditTextJobHistory"
+            android:id="@+id/EditTextJobHistory1"
             android:layout_height="wrap_content"
-            android:hint="@string/job_history"
+            android:hint="@string/experience1"
+            android:inputType="textMultiLine"
+            android:layout_width="fill_parent"></EditText>
+
+        <EditText
+            android:id="@+id/EditTextJobHistory2"
+            android:layout_height="wrap_content"
+            android:hint="@string/experience2"
+            android:inputType="textMultiLine"
+            android:layout_width="fill_parent"></EditText>
+
+        <EditText
+            android:id="@+id/EditTextJobHistory3"
+            android:layout_height="wrap_content"
+            android:hint="@string/experience3"
+            android:inputType="textMultiLine"
+            android:layout_width="fill_parent"></EditText>
+
+        <EditText
+            android:id="@+id/EditTextJobHistory4"
+            android:layout_height="wrap_content"
+            android:hint="@string/experience4"
+            android:inputType="textMultiLine"
+            android:layout_width="fill_parent"></EditText>
+
+        <EditText
+            android:id="@+id/EditTextJobHistory5"
+            android:layout_height="wrap_content"
+            android:hint="@string/experience5"
+            android:inputType="textMultiLine"
+            android:layout_width="fill_parent"></EditText>
+
+        <EditText
+            android:id="@+id/EditTextJobHistory6"
+            android:layout_height="wrap_content"
+            android:hint="@string/experience6"
             android:inputType="textMultiLine"
             android:layout_width="fill_parent"></EditText>
 
