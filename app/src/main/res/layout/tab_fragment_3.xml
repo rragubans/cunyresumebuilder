@@ -79,7 +79,6 @@
             android:id="@+id/buttonGenerate"
             android:layout_height="wrap_content"
             android:text="@string/generate_resume"
-            android:onClick="generateResume"
             android:layout_width="fill_parent"></Button>
 
     </LinearLayout>
