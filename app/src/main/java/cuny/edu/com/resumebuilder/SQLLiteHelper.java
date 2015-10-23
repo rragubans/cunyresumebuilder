@@ -1,5 +1,6 @@
 package cuny.edu.com.resumebuilder;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -9,7 +10,9 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
     public static final String TABLE_RESUME = "resume";
     public static final String COLUMN_ID                = "_id";
     public static final String COLUMN_NAME              = "name";
-    public static final String COLUMN_ADDRESS           = "address";
+    public static final String COLUMN_ADDRESS_1         = "address1";
+    public static final String COLUMN_ADDRESS_2         = "address2";
+    public static final String COLUMN_ADDRESS_3         = "address3";
     public static final String COLUMN_EMAIL             = "email";
     public static final String COLUMN_LANGUAGES         = "languages";
     public static final String COLUMN_OBJECTIVES        = "objectives";
@@ -35,7 +38,9 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
             + "("
             + COLUMN_ID                     + " integer primary key autoincrement, "
             + COLUMN_NAME                   + " text not null, "
-            + COLUMN_ADDRESS                + " text not null, "
+            + COLUMN_ADDRESS_1              + " text not null, "
+            + COLUMN_ADDRESS_2              + " text not null, "
+            + COLUMN_ADDRESS_3              + " text not null, "
             + COLUMN_EMAIL                  + " text not null, "
             + COLUMN_LANGUAGES              + " text not null, "
             + COLUMN_OBJECTIVES             + " text not null, "
@@ -65,5 +70,22 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
+
+    public void save(ResumeInformation resumeInformation) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_ID, 1);
+        contentValues.put(COLUMN_NAME, resumeInformation.getName());
+        contentValues.put(COLUMN_ADDRESS_1, resumeInformation.getAddress1());
+        contentValues.put(COLUMN_ADDRESS_2, resumeInformation.getAddress2());
+        contentValues.put(COLUMN_ADDRESS_3, resumeInformation.getAddress3());
+
+        long newRowId = db.insert(TABLE_RESUME, null, contentValues);
+        close();
+    }
+
+    public ResumeInformation findByName(String name) {
+        return null;
     }
 }
