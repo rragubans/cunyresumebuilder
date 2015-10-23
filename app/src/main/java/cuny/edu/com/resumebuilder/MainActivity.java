@@ -1,13 +1,21 @@
 package cuny.edu.com.resumebuilder;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+
+import java.io.File;
+
+import cuny.edu.com.resumebuilder.pdf.ResumeGenerator;
 
 
 public class MainActivity extends AppCompatActivity  {
@@ -23,6 +31,8 @@ public class MainActivity extends AppCompatActivity  {
         tabLayout.addTab(tabLayout.newTab().setText("Personal Details"));
         tabLayout.addTab(tabLayout.newTab().setText("Education Details"));
         tabLayout.addTab(tabLayout.newTab().setText("Experience Details"));
+     //   tabLayout.addTab(tabLayout.newTab().setText("Resume"));
+
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -34,6 +44,8 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                addListenerOnButton();
+
             }
 
             @Override
@@ -46,7 +58,9 @@ public class MainActivity extends AppCompatActivity  {
 
             }
         });
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,12 +77,40 @@ public class MainActivity extends AppCompatActivity  {
 
         return super.onOptionsItemSelected(item);
     }
+    public void addListenerOnButton() {
 
-    public void generateResume(View view) {
+        Button button = (Button) findViewById(R.id.buttonGenerate);
+        if (button != null) {
+            button.setOnClickListener(new View.OnClickListener() {
 
-        System.out.println("Generating Resume");
+                @Override
+                public void onClick(View view) {
+                    Log.i("Onclick", "Generate Resume");
+                    try {
+                        ResumeGenerator generator = new ResumeGenerator();
+                        ResumeInformation resumeInfo = new ResumeInformation();
 
+                        resumeInfo.setAddress1("87-32 168st");
+                        resumeInfo.setCity("Jamaica");
+                        resumeInfo.setState("NY");
+                        resumeInfo.setName("Ram Ragubans");
+                        generator.generateResume(resumeInfo, view.getContext());
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
+                    }
+                }
+
+            });
+        }
     }
+
+    private void viewPdf(File file){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(file), "application/pdf");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
+    }
+
 
     public void sendFeedback(View view) {
 
@@ -76,5 +118,4 @@ public class MainActivity extends AppCompatActivity  {
 
     }
 }
-
 
