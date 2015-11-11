@@ -67,9 +67,17 @@
             android:layout_width="fill_parent"></EditText>
 
         <Button
-            android:id="@+id/buttonSendFeedback"
+            android:id="@+id/buttonSendEducation"
             android:layout_height="wrap_content"
-            android:text="@string/feedbackbutton"
+            android:text="@string/saveeducationbutton"
+            style="@style/button"
+            android:layout_width="fill_parent"></Button>
+
+        <Button
+            android:id="@+id/buttonClear"
+            android:layout_height="wrap_content"
+            android:text="@string/clearbutton"
+            style="@style/button"
             android:onClick="sendFeedback"
             android:layout_width="fill_parent"></Button>
 

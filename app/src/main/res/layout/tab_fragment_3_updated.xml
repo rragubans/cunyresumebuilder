@@ -18,60 +18,24 @@
             android:text="@string/job_history"
             android:textSize="10pt"></TextView>
 
-
         <EditText
-            android:id="@+id/EditTextJobHistory1"
+            android:id="@+id/EditTextFrom"
             android:layout_height="wrap_content"
-            android:hint="@string/experience1"
+            android:hint="@string/from"
             android:inputType="textMultiLine"
             android:layout_width="fill_parent"></EditText>
 
         <EditText
-            android:id="@+id/EditTextJobHistory2"
+            android:id="@+id/EditTextCompany"
             android:layout_height="wrap_content"
-            android:hint="@string/experience2"
+            android:hint="@string/company"
             android:inputType="textMultiLine"
             android:layout_width="fill_parent"></EditText>
 
         <EditText
-            android:id="@+id/EditTextJobHistory3"
+            android:id="@+id/EditTextDescription"
             android:layout_height="wrap_content"
-            android:hint="@string/experience3"
-            android:inputType="textMultiLine"
-            android:layout_width="fill_parent"></EditText>
-
-        <EditText
-            android:id="@+id/EditTextJobHistory4"
-            android:layout_height="wrap_content"
-            android:hint="@string/experience4"
-            android:inputType="textMultiLine"
-            android:layout_width="fill_parent"></EditText>
-
-        <EditText
-            android:id="@+id/EditTextJobHistory5"
-            android:layout_height="wrap_content"
-            android:hint="@string/experience5"
-            android:inputType="textMultiLine"
-            android:layout_width="fill_parent"></EditText>
-
-        <EditText
-            android:id="@+id/EditTextJobHistory6"
-            android:layout_height="wrap_content"
-            android:hint="@string/experience6"
-            android:inputType="textMultiLine"
-            android:layout_width="fill_parent"></EditText>
-
-        <EditText
-            android:id="@+id/EditTextJobHistory7"
-            android:layout_height="wrap_content"
-            android:hint="@string/experience7"
-            android:inputType="textMultiLine"
-            android:layout_width="fill_parent"></EditText>
-
-        <EditText
-            android:id="@+id/EditTextSkills"
-            android:layout_height="wrap_content"
-            android:hint="@string/skills"
+            android:hint="@string/description"
             android:inputType="textMultiLine"
             android:layout_width="fill_parent"></EditText>
 

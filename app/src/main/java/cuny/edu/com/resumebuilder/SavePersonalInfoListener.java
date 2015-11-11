@@ -1,34 +1,42 @@
 package cuny.edu.com.resumebuilder;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
+import cuny.edu.com.resumebuilder.pdf.ResumeGenerator;
 
-public class SavePersonalInfoListener extends Activity {
+
+public class SavePersonalInfoListener {
 
     private static final String TAG = "SendPersonalInfoActivit";
-    private Button submitButton;
+    private View view;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.tab_fragment_1);
-        submitButton = (Button) findViewById(R.id.buttonSendFeedback);
+    public SavePersonalInfoListener(View view) {
+        this.view = view;
+    }
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText fullName = (EditText) view.findViewById(R.id.EditTextName);
-                EditText address  = (EditText) view.findViewById(R.id.EditTextAddress);
-                System.out.println("Name " + fullName);
-                Log.v(TAG, "FullName " + fullName);
-                finish();
-            }
-        });
+    public void onButtonClicked(SQLLiteHelper sqlLiteHelper) {
+        ResumeInformation information = new ResumeInformation();
+
+        information.setName(findByName(R.id.EditTextName));
+        information.setAddress(findByName(R.id.EditTextAddress));
+        information.setStreet(findByName(R.id.EditTextStreet));
+        information.setCity(findByName(R.id.EditTextCity));
+        information.setState(findByName(R.id.EditTextState));
+        information.setZipCode(findByName(R.id.EditTextZip));
+        information.setEmail(findByName(R.id.EditTextEmail));
+        information.setLanguagesKnown(findByName(R.id.EditTextLanguage));
+        information.setStrength(findByName(R.id.EditTextStrength));
+        information.addCareerObjectives(findByName(R.id.EditTextCareerObjectives));
+        information.setHobbies(findByName(R.id.EditTextHobbies));
+        sqlLiteHelper.savePersonalInformation(information);
+        ResumeGenerator resumeGenerator = new ResumeGenerator();
+        resumeGenerator.generateResume(information, view.getContext());
+    }
+
+    private String findByName(int id) {
+        EditText text = (EditText) view.findViewById(id);
+        return ((text != null) ? text.getText().toString() : "");
     }
 }
 

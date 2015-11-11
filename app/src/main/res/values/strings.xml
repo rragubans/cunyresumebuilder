@@ -7,8 +7,20 @@
     <string  name="educationdetailstitle">Enter Education Details for Resume:</string>
     <string name="feedbackname">Full Name:</string>
     <string name="feedbackaddress">Address </string>
+    <string name="street">Street </string>
+    <string name="city">City </string>
+    <string name="state">State </string>
+    <string name="zipcode">zip </string>
+
     <string name="feedbackemail">Email </string>
     <string name="feedbackbutton">Save Personal Information</string>
+    <string name="saveeducationbutton">Save Education Information</string>
+    <string name="clearbutton">Clear</string>
+    <string name="newbutton">Add</string>
+    <string name="removebutton">Delete</string>
+
+    <string name="viewresultsbutton">View Current Resume</string>
+
     <string name="cancelresetbutton">Reset</string>
     <string name="gendertype">Gender...</string>
     <string name="languageknown">Languages known</string>
@@ -34,14 +46,32 @@
     <string name="job_history">Employment History:</string>
     <string name="skills">Skills:</string>
     <string name="certificate">Certificate:</string>
-    <string name="generate_resume">Generate Resume:</string>
+    <string name="generate_resume">Save Employment Info:</string>
 
     <string name="summary">Summary:</string>
+    <string name="when">When :</string>
+    <string name="experience">Employment :</string>
+
+    <string name="hintTxtItem">Enter an item here ...</string>
+    <string name="txtEmpty">List is empty</string>
     <string name="experience1">Employment 1:</string>
+    <string name="from">From - To:</string>
+    <string name="company">Company:</string>
+    <string name="description">Description:</string>
+
     <string name="experience2">Employment 2:</string>
-    <string name="experience3">Employment 3:</string>
+    <string name="experience3">Employmenromt 3:</string>
     <string name="experience4">Employment 4:</string>
     <string name="experience5">Employment 5:</string>
     <string name="experience6">Employment 6:</string>
+    <string name="experience7">Employment 7:</string>
 
+    <string name="info">Info</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="app_name_with_index">ResumeBuilder (%1$d/%2$d)</string>
+    <string name="lblbtnadd">Add</string>
+    <string name="lblbtndel">Delete</string>
+
+    <string name="service_name">WebServer</string>
 </resources>

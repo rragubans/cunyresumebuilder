@@ -8,16 +8,52 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".MenuActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-      
+
+        <activity
+            android:name="cuny.edu.com.resumebuilder.MainActivity"
+            android:label="@string/resume_builder"
+            android:parentActivityName="cuny.edu.com.resumebuilder.MenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cuny.edu.com.resumebuilder.MenuActivity" />
+        </activity>
+
+        <activity
+            android:name="cuny.edu.com.resumebuilder.CalendarViewActivity"
+            android:label="scheduler"
+            android:parentActivityName="cuny.edu.com.resumebuilder.MenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cuny.edu.com.resumebuilder.MenuActivity" />
+        </activity>
+
+        <activity
+            android:name="cuny.edu.com.resumebuilder.Calendar2ViewActivity"
+            android:label="scheduler2"
+            android:parentActivityName="cuny.edu.com.resumebuilder.MenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cuny.edu.com.resumebuilder.MenuActivity" />
+        </activity>
+
+        <activity
+            android:name="cuny.edu.com.resumebuilder.WebViewActivity"
+            android:label="webview"
+            android:parentActivityName="cuny.edu.com.resumebuilder.MenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cuny.edu.com.resumebuilder.MenuActivity" />
+        </activity>
     </application>
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

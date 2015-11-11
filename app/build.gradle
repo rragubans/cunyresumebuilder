@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "cuny.edu.com.resumebuilder"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -22,8 +22,8 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.squareup:android-times-square:1.6.4'
     compile 'com.android.support:design:23.0.0'
-    compile files('libs/android-pdfview-1.0.4.jar')
-    compile files('libs/itextg-5.5.5.jar')
+    compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
 }
 
