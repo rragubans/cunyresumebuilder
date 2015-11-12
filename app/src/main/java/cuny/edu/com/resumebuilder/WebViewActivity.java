@@ -39,8 +39,10 @@ public class WebViewActivity extends AppCompatActivity {
         webView.setWebViewClient(new MyWebViewClient());
         AssetManager mgr = getBaseContext().getAssets();
         //String url = "http://javatechig.com";
+        //String url = "http://hunter.cuny.edu";
+        String url = "http://safe-dusk-8588.herokuapp.com";
 
-        String url = "file:///android_asset/www/index.html";
+        //String url = "file:///android_asset/www/index.html";
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setAllowFileAccessFromFileURLs(true);
         webView.getSettings().setAllowUniversalAccessFromFileURLs(true);

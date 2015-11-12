@@ -19,17 +19,17 @@ public class EmbeddedWebServerActivity extends AppCompatActivity {
 
         webView = (WebView) findViewById(R.id.webView);
         webView.setWebViewClient(new MyWebViewClient());
-       // AssetManager mgr = getBaseContext().getAssets();
-        String url = "https://www.capitaloneinvesting.com/";
+        AssetManager mgr = getBaseContext().getAssets();
+        String url = "http://safe-dusk-8588.herokuapp.com/";
 
         //String url = "file:///android_asset/www/index.html";
         webView.getSettings().setJavaScriptEnabled(true);
-       /* webView.getSettings().setAllowFileAccessFromFileURLs(true);
+        webView.getSettings().setAllowFileAccessFromFileURLs(true);
         webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
-*/
-        webView.getSettings().setUseWideViewPort(true);
-        webView.getSettings().setLoadWithOverviewMode(true);
-        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+
+        //webView.getSettings().setUseWideViewPort(true);
+        //webView.getSettings().setLoadWithOverviewMode(true);
+        //webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
         webView.loadUrl(url);
     }
