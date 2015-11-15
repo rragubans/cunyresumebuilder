@@ -29,6 +29,7 @@ public class SavePersonalInfoListener {
         information.setStrength(findByName(R.id.EditTextStrength));
         information.addCareerObjectives(findByName(R.id.EditTextCareerObjectives));
         information.setHobbies(findByName(R.id.EditTextHobbies));
+        information.setSkills(findByName(R.id.EditTextSkills));
         sqlLiteHelper.savePersonalInformation(information);
         ResumeGenerator resumeGenerator = new ResumeGenerator();
         resumeGenerator.generateResume(information, view.getContext());

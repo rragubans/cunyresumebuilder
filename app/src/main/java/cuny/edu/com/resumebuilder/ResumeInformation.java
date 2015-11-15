@@ -16,6 +16,7 @@ public class ResumeInformation {
     private String languagesKnown;
     private String skills;
     private List<String> careerObjectives = new ArrayList<>();
+    private List<Employment> employments  = new ArrayList<>();
     private String strength;
     private String hobbies;
     private String educationLine1;
@@ -255,6 +256,14 @@ public class ResumeInformation {
 
     public void setSkills(String skills) {
         this.skills = skills;
+    }
+
+    public List<Employment> getEmployments() {
+        return employments;
+    }
+
+    public void setEmployments(List<Employment> employments) {
+        this.employments = employments;
     }
 
     public String toString() {

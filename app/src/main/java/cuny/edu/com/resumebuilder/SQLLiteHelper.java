@@ -34,6 +34,16 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_EDUCATION = "education";
     public static final String COLUMN_EMPLOYMENT = "employment";
 
+    public static final String COLUMN_EMPLOYMENT_WHEN        = "timespan";
+    public static final String COLUMN_EMPLOYMENT_WHERE       = "company";
+    public static final String COLUMN_EMPLOYMENT_DESCRIPTION = "description";
+
+
+    public static final String COLUMN_EDUCATION_WHEN        = "timespan";
+    public static final String COLUMN_EDUCATION_WHERE       = "company";
+    public static final String COLUMN_EDUCATION_DESCRIPTION = "description";
+
+
     public static final String COLUMN_EDUCATION_LINE1 = "education_1";
     public static final String COLUMN_EDUCATION_LINE2 = "education_2";
     public static final String COLUMN_EDUCATION_LINE3 = "education_3";
@@ -59,13 +69,17 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
             + "("
             + COLUMN_ID               + " integer primary key autoincrement, "
             + RESUME_ID               + " text not null,"
-            + COLUMN_EDUCATION  + " text not null);";
+            + COLUMN_EDUCATION_WHEN   + " text not null,"
+            + COLUMN_EDUCATION_WHERE  + " text not null,"
+            + COLUMN_EDUCATION_DESCRIPTION  + " text not null);";
 
     private static final String DATABASE_CREATE_EMPLOYMENT = "create table " + TABLE_EMPLOYMENT
             + "("
-            + COLUMN_ID               + " integer primary key autoincrement, "
-            + RESUME_ID               + " text not null,"
-            + COLUMN_EMPLOYMENT  + " text not null);";
+            + COLUMN_ID                + " integer primary key autoincrement, "
+            + RESUME_ID                + " text not null,"
+            + COLUMN_EMPLOYMENT_WHEN   + " text not null,"
+            + COLUMN_EMPLOYMENT_WHERE  + " text not null,"
+            + COLUMN_EMPLOYMENT_DESCRIPTION  + " text not null);";
 
 
     private static final String DATABASE_CREATE_OBJECTIVES = "create table " + TABLE_OBJECTIVE
@@ -143,6 +157,7 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
     public void saveTemplateResumeInformation() {
         SQLiteDatabase db = getWritableDatabase();
         onCreate(db);
+        db.beginTransaction();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COLUMN_ID, 1);
         contentValues.put(COLUMN_NAME,      "_name");
@@ -170,11 +185,28 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_EMPLOYMENT_LINE5, "_employment5");
         contentValues.put(COLUMN_EMPLOYMENT_LINE6, "_employment6");
         contentValues.put(COLUMN_EMPLOYMENT_LINE7, "_employment7");
-        contentValues.put(COLUMN_SKILLS,    "_skills");
+        contentValues.put(COLUMN_SKILLS, "_skills");
 
         long newRowId = db.insert(TABLE_RESUME, null, contentValues);
+        db.setTransactionSuccessful();
+        db.endTransaction();
+        saveTemplateEmploymentInformation();
+    }
 
 
+    public void saveTemplateEmploymentInformation() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_ID, 1);
+        contentValues.put(RESUME_ID, 1);
+
+        contentValues.put(COLUMN_EMPLOYMENT_WHEN, "when");
+        contentValues.put(COLUMN_EMPLOYMENT_WHEN, "where");
+        contentValues.put(COLUMN_EMPLOYMENT_WHEN, "description");
+        long newRowId = db.insert(TABLE_EMPLOYMENT, null, contentValues);
+        db.setTransactionSuccessful();
+        db.endTransaction();
     }
 
     public void savePersonalInformation(ResumeInformation resumeInformation) {
@@ -193,8 +225,9 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
             contentValues.put(COLUMN_EMAIL, resumeInformation.getEmail());
             contentValues.put(COLUMN_LANGUAGES, resumeInformation.getLanguagesKnown());
             contentValues.put(COLUMN_OBJECTIVES, resumeInformation.getCareerObjectives().get(0));
-            contentValues.put(COLUMN_STRENGTH, resumeInformation.getStrength());
-            contentValues.put(COLUMN_HOBBIES, resumeInformation.getHobbies());
+            contentValues.put(COLUMN_STRENGTH,   resumeInformation.getStrength());
+            contentValues.put(COLUMN_HOBBIES,    resumeInformation.getHobbies());
+            contentValues.put(COLUMN_SKILLS,     resumeInformation.getSkills());
 
             long newRowId = db.update(TABLE_RESUME, contentValues, "_id = " + 1, null);
             db.setTransactionSuccessful();
@@ -238,16 +271,26 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         try {
             db.beginTransaction();
             ContentValues contentValues = new ContentValues();
-            contentValues.put(COLUMN_EMPLOYMENT_LINE1, resumeInformation.getEmploymentLine1());
-            contentValues.put(COLUMN_EMPLOYMENT_LINE2, resumeInformation.getEmploymentLine2());
-            contentValues.put(COLUMN_EMPLOYMENT_LINE3, resumeInformation.getEmploymentLine3());
-            contentValues.put(COLUMN_EMPLOYMENT_LINE4, resumeInformation.getEmploymentLine4());
-            contentValues.put(COLUMN_EMPLOYMENT_LINE5, resumeInformation.getEmploymentLine5());
-            contentValues.put(COLUMN_EMPLOYMENT_LINE6, resumeInformation.getEmploymentLine6());
-            contentValues.put(COLUMN_EMPLOYMENT_LINE7, resumeInformation.getEmploymentLine7());
-            contentValues.put(COLUMN_SKILLS, resumeInformation.getSkills());
+            int i=1;
+            String[] employmentLines = new String[6];
 
-            long newRowId = db.update(TABLE_RESUME, contentValues, "_id = " + 1, null);
+            for (Employment employment : resumeInformation.getEmployments()) {
+                String employmentLine = employment.getWhere() + "|" + employment.getWhen() + "|" +
+                                employment.getDescription();
+                employmentLines[i] = employmentLine;
+            }
+
+
+        contentValues.put(COLUMN_EMPLOYMENT_LINE1, employmentLines[0]);
+        contentValues.put(COLUMN_EMPLOYMENT_LINE2, resumeInformation.getEmploymentLine2());
+        contentValues.put(COLUMN_EMPLOYMENT_LINE3, resumeInformation.getEmploymentLine3());
+        contentValues.put(COLUMN_EMPLOYMENT_LINE4, resumeInformation.getEmploymentLine4());
+        contentValues.put(COLUMN_EMPLOYMENT_LINE5, resumeInformation.getEmploymentLine5());
+        contentValues.put(COLUMN_EMPLOYMENT_LINE6, resumeInformation.getEmploymentLine6());
+        contentValues.put(COLUMN_EMPLOYMENT_LINE7, resumeInformation.getEmploymentLine7());
+        contentValues.put(COLUMN_SKILLS, resumeInformation.getSkills());
+
+        long newRowId = db.update(TABLE_RESUME, contentValues, "_id = " + 1, null);
             db.setTransactionSuccessful();
         } catch(Exception e){
             e.printStackTrace();
@@ -265,6 +308,41 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         String selectQuery = "SELECT  * FROM " + TABLE_RESUME;
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                ResumeInformation resumeInformation = setObjectStateFrom(cursor);
+                return resumeInformation;
+            } while (cursor.moveToNext());
+        }
+
+        return null;
+    }
+
+
+    public ResumeInformation findEmployment() {
+        SQLiteDatabase db = getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_EMPLOYMENT;
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                ResumeInformation resumeInformation = setObjectStateFrom(cursor);
+                return resumeInformation;
+            } while (cursor.moveToNext());
+        }
+
+        return null;
+    }
+
+    public ResumeInformation findEducation() {
+        SQLiteDatabase db = getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_EDUCATION;
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -301,6 +379,8 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         information.setEducationLine6(cursor.getString(17));
         information.setEducationLine7(cursor.getString(18));
 
+        String str = cursor.getString(19);
+
         information.setEmploymentLine1(cursor.getString(19));
         information.setEmploymentLine2(cursor.getString(20));
         information.setEmploymentLine3(cursor.getString(21));
@@ -315,4 +395,17 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         return information;
     }
 
+    private Employment createEmploymentsFrom(String str) {
+
+        if (str != null) {
+            String[] strings = str.split("|");
+            Employment employment = new Employment();
+            employment.setWhen(strings[0]);
+            employment.setWhere(strings[1]);
+            employment.setDescription(strings[2]);
+            return employment;
+        }
+
+        return null;
+    }
 }

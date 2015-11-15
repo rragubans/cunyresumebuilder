@@ -26,8 +26,9 @@ public class DynamicAddingEmploymentActivity extends ListFragment {
         final View rootView = inflater.inflate(R.layout.tab_fragment_3_input_box, container, false);
         Button button =(Button)rootView.findViewById(R.id.btnAdd);
 
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
-
+        if (adapter == null) {
+            adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
+        }
         OnClickListener listener = new OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -18,6 +18,14 @@ public class SaveEmploymentInfoListener {
     public void onButtonClicked(SQLLiteHelper sqlLiteHelper) {
         ResumeInformation information = new ResumeInformation();
 
+        Employment employment = new Employment();
+        employment.setDescription(findByName(R.id.EditTextDescription));
+        employment.setResumeId(1);
+        employment.setWhen(findByName(R.id.EditTextFrom));
+        employment.setWhere(findByName(R.id.EditTextCompany));
+
+        information.getEmployments().add(employment);
+
         information.setEmploymentLine1(findByName(R.id.EditTextJobHistory1));
         information.setEmploymentLine2(findByName(R.id.EditTextJobHistory2));
         information.setEmploymentLine3(findByName(R.id.EditTextJobHistory3));

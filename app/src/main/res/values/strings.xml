@@ -46,7 +46,8 @@
     <string name="job_history">Employment History:</string>
     <string name="skills">Skills:</string>
     <string name="certificate">Certificate:</string>
-    <string name="generate_resume">Save Employment Info:</string>
+    <string name="save">Save</string>
+    <string name="add_employment">Add </string>
 
     <string name="summary">Summary:</string>
     <string name="when">When :</string>

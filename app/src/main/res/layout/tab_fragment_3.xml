@@ -79,7 +79,7 @@
             android:id="@+id/buttonGenerate"
             android:layout_height="wrap_content"
             style="@style/button"
-            android:text="@string/generate_resume"
+            android:text="@string/save"
             android:layout_width="fill_parent"></Button>
 
 

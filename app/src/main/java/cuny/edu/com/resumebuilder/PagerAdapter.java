@@ -25,7 +25,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             case 3:
                 return new PdfRendererBasicFragment();
             case 4:
-                return new DynamicAddingEmploymentActivity();
+                return new EmploymentListViewActivity();
             default:
                 return null;
         }
