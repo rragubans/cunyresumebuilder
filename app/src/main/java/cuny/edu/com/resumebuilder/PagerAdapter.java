@@ -19,13 +19,11 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return new TabFragment1();
             case 1:
-                return new TabFragment2();
+                return new EducationListViewActivity();
             case 2:
-                return new TabFragment3();
+                return new EmploymentListViewActivity();
             case 3:
                 return new PdfRendererBasicFragment();
-            case 4:
-                return new EmploymentListViewActivity();
             default:
                 return null;
         }

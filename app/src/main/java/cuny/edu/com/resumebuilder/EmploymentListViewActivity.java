@@ -35,7 +35,7 @@ public class EmploymentListViewActivity extends ListFragment {
         Button button = (Button) view2.findViewById(R.id.buttonAdd2);
 
         list.add(" ");
-
+        getEmploymentData(list);
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);
         OnClickListener listener = new OnClickListener() {
 
@@ -55,9 +55,12 @@ public class EmploymentListViewActivity extends ListFragment {
                                 final EditText editText2 = (EditText) promptView.findViewById(R.id.EditTextWhere);
                                 final EditText editText3 = (EditText) promptView.findViewById(R.id.EditTextWhat);
 
-                                String str = "Date: "     + editText.getText().toString() +
-                                             " Company: " + editText2.getText().toString();
+                                String when        = editText.getText().toString();
+                                String where       = editText2.getText().toString();
+                                String description = editText3.getText().toString();
+                                String str = "Date: "     + when + " Company: " + where;
                                 list.add(str);
+                                saveEmploymentInformation(when, where, description);
                                 updateUI();
                             }
                         })
@@ -71,7 +74,6 @@ public class EmploymentListViewActivity extends ListFragment {
                 AlertDialog alert = alertDialogBuilder.create();
                 alert.show();
             }
-
         };
 
         button.setOnClickListener(listener);
@@ -95,7 +97,22 @@ public class EmploymentListViewActivity extends ListFragment {
         });
     }
 
+    public void saveEmploymentInformation(String when, String where, String description) {
 
+        SQLLiteHelper sqlLiteHelper = SQLLiteHelper.getInstance();
+        sqlLiteHelper.createNewEmployment(when, where, description);
+    }
+
+    public void getEmploymentData(List<String> stringList) {
+        SQLLiteHelper sqlLiteHelper  = SQLLiteHelper.getInstance();
+        List<Employment> employments = sqlLiteHelper.findEmployments();
+        for (Employment employment : employments) {
+            String str = "Date: "       + employment.getWhen() +
+                        " Company: "    + employment.getWhere();
+            stringList.add(str);
+        }
+
+
+    }
 }
-
 

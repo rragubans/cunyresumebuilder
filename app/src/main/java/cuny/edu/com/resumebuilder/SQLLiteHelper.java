@@ -304,6 +304,34 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         return null;
     }
 
+
+    public void createNewEmployment(String when, String where, String desc) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(RESUME_ID, 1);
+
+        contentValues.put(COLUMN_EMPLOYMENT_WHEN, when);
+        contentValues.put(COLUMN_EMPLOYMENT_WHERE, where);
+        contentValues.put(COLUMN_EMPLOYMENT_DESCRIPTION, desc);
+        long newRowId = db.insert(TABLE_EMPLOYMENT, null, contentValues);
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
+
+    public void createNewEducation(String when, String where, String desc) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(RESUME_ID, 1);
+        contentValues.put(COLUMN_EDUCATION_WHEN, when);
+        contentValues.put(COLUMN_EDUCATION_WHERE, where);
+        contentValues.put(COLUMN_EDUCATION_DESCRIPTION, desc);
+        long newRowId = db.insert(TABLE_EDUCATION, null, contentValues);
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
+
     public ResumeInformation findResume() {
         SQLiteDatabase db = getReadableDatabase();
 
@@ -321,9 +349,10 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         return null;
     }
 
-
-    public ResumeInformation findEmployment() {
+    public List<Employment> findEmployments() {
         SQLiteDatabase db = getReadableDatabase();
+
+        List<Employment> employments = new ArrayList<>();
 
         String selectQuery = "SELECT  * FROM " + TABLE_EMPLOYMENT;
 
@@ -331,16 +360,17 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                ResumeInformation resumeInformation = setObjectStateFrom(cursor);
-                return resumeInformation;
+              employments.add(getEmployment(cursor));
             } while (cursor.moveToNext());
         }
 
-        return null;
+        return employments;
     }
 
-    public ResumeInformation findEducation() {
+    public List<Education> findEducations() {
         SQLiteDatabase db = getReadableDatabase();
+
+        List<Education> educations = new ArrayList<>();
 
         String selectQuery = "SELECT  * FROM " + TABLE_EDUCATION;
 
@@ -348,12 +378,11 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                ResumeInformation resumeInformation = setObjectStateFrom(cursor);
-                return resumeInformation;
+                educations.add(getEducation(cursor));
             } while (cursor.moveToNext());
         }
 
-        return null;
+        return educations;
     }
 
     private ResumeInformation setObjectStateFrom(Cursor cursor) {
@@ -392,6 +421,27 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
 
 
         System.out.println("Object hydrated " + information);
+        return information;
+    }
+
+    private Employment getEmployment(Cursor cursor) {
+
+        Employment information = new Employment();
+        information.setResumeId(Integer.valueOf(cursor.getString(cursor.getColumnIndex(RESUME_ID))));
+        information.setWhen(cursor.getString(cursor.getColumnIndex(COLUMN_EMPLOYMENT_WHEN)));
+        information.setWhere(cursor.getString(cursor.getColumnIndex(COLUMN_EMPLOYMENT_WHERE)));
+        information.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_EMPLOYMENT_DESCRIPTION)));
+        return information;
+    }
+
+
+    private Education getEducation(Cursor cursor) {
+
+        Education information = new Education();
+        information.setResumeId(Integer.valueOf(cursor.getString(cursor.getColumnIndex(RESUME_ID))));
+        information.setWhen(cursor.getString(cursor.getColumnIndex(COLUMN_EDUCATION_WHEN)));
+        information.setWhere(cursor.getString(cursor.getColumnIndex(COLUMN_EDUCATION_WHERE)));
+        information.setDescription(cursor.getString(cursor.getColumnIndex(COLUMN_EDUCATION_DESCRIPTION)));
         return information;
     }
 

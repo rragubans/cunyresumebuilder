@@ -46,6 +46,7 @@
         <activity
             android:name="cuny.edu.com.resumebuilder.WebViewActivity"
             android:label="webview"
+            android:screenOrientation="landscape"
             android:parentActivityName="cuny.edu.com.resumebuilder.MenuActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -56,4 +57,6 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 </manifest>

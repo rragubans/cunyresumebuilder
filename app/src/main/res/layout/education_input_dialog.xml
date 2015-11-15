@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Enter Employment"
+        android:id="@+id/textView" />
+
+    <EditText
+        android:id="@+id/EditTextWhen"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="1dp"
+        android:background="@drawable/editextstyle2"
+        android:hint="When"
+        android:padding="10dp" />
+
+
+    <EditText
+        android:id="@+id/EditTextWhere"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Where"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/editextstyle2"
+        android:padding="10dp" />
+
+    <EditText
+        android:id="@+id/EditTextWhat"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:layout_width="fill_parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/editextstyle2"
+        android:hint="Description"
+        android:padding="10dp" />
+
+
+</LinearLayout>

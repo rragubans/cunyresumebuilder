@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -37,20 +38,25 @@ public class WebViewActivity extends AppCompatActivity {
 
         webView = (WebView) findViewById(R.id.webView);
         webView.setWebViewClient(new MyWebViewClient());
-        AssetManager mgr = getBaseContext().getAssets();
+        //AssetManager mgr = getBaseContext().getAssets();
+
         //String url = "http://javatechig.com";
         //String url = "http://hunter.cuny.edu";
-       // String url = "http://safe-dusk-8588.herokuapp.com";
+        String url = "https://safe-dusk-8588.herokuapp.com";
 
-        String url = "file:///android_asset/www/index.html";
+        //String url = "file:///android_asset/www/index.html";
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setAllowFileAccessFromFileURLs(true);
         webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
 
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLoadWithOverviewMode(true);
-
-
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        webView.setScrollbarFadingEnabled(true);
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.setWebChromeClient(new WebChromeClient());
         webView.loadUrl(url);
     }
 

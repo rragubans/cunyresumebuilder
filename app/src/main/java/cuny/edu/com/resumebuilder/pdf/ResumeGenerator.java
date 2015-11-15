@@ -33,7 +33,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import cuny.edu.com.resumebuilder.Education;
+import cuny.edu.com.resumebuilder.Employment;
 import cuny.edu.com.resumebuilder.ResumeInformation;
+import cuny.edu.com.resumebuilder.SQLLiteHelper;
 
 /**
  * Created by 86984L on 10/3/2015.
@@ -144,13 +147,16 @@ public class ResumeGenerator {
 
     private void createWorkExperience(ResumeInformation information, Document document) throws DocumentException {
 
+        SQLLiteHelper sqlLiteHelper = SQLLiteHelper.getInstance();
+        java.util.List<Employment> employmentList = sqlLiteHelper.findEmployments();
+
         Paragraph paragraph = createParagraph(10, 10, 0, 20);
         Font fontbold = FontFactory.getFont("Times-Roman", 30, Font.BOLD);
         paragraph.setFont(fontbold);
         paragraph.setSpacingAfter(25);
         paragraph.setSpacingBefore(25);
         paragraph.setAlignment(Element.ALIGN_LEFT);
-        Chunk chunk = new Chunk("Employment:", FontFactory.getFont(FontFactory.TIMES_ROMAN, 20));
+        Chunk chunk = new Chunk("Employment:", FontFactory.getFont(FontFactory.TIMES_ROMAN, 30));
         paragraph.setLeading(5.0f, 1.0f);
 
         paragraph.add(chunk);
@@ -158,14 +164,13 @@ public class ResumeGenerator {
         document.add(paragraph);
 
         System.out.println("getting employment " + information.getEmploymentLine1());
-        document.add(addInfo(information.getEmploymentLine1(), 20));
-        document.add(addInfo(information.getEmploymentLine2(), 40));
-        document.add(addInfo(information.getEmploymentLine3(), 60));
-        document.add(addInfo(information.getEmploymentLine4(), 80));
-        document.add(addInfo(information.getEmploymentLine5(), 100));
-        document.add(addInfo(information.getEmploymentLine6(), 120));
+        int i = 1;
+        for (Employment employment : employmentList) {
+            String str = employment.getWhen() + ": " + employment.getWhere();
+            document.add(addInfo(str, (20*i++)));
+            document.add(addInfo(employment.getDescription(), 20*i++));
+        }
         document.add(new Chunk(new LineSeparator(1, 100, BaseColor.BLUE, Element.ALIGN_CENTER, -2)));
-
     }
 
 
@@ -184,12 +189,16 @@ public class ResumeGenerator {
         paragraph.add(chunk);
         document.add(paragraph);
 
-        document.add(addInfo(information.getEducationLine1(), 20));
-        document.add(addInfo(information.getEducationLine2(), 40));
-        document.add(addInfo(information.getEducationLine3(), 60));
-        document.add(addInfo(information.getEducationLine4(), 80));
-        document.add(addInfo(information.getEducationLine5(), 100));
-        document.add(addInfo(information.getEducationLine6(), 120));
+
+        SQLLiteHelper sqlLiteHelper = SQLLiteHelper.getInstance();
+        java.util.List<Education> educationList = sqlLiteHelper.findEducations();
+
+        int i = 1;
+        for (Education education : educationList) {
+            String str = education.getWhen() + ": " + education.getWhere();
+            document.add(addInfo(str, (20*i++)));
+            document.add(addInfo(education.getDescription(), 20*i++));
+        }
         document.add(new Chunk(new LineSeparator(1, 100, BaseColor.BLUE, Element.ALIGN_CENTER, -2)));
 
     }
