@@ -52,6 +52,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cuny.edu.com.resumebuilder.MenuActivity" />
         </activity>
+
+
+        <activity
+            android:name="cuny.edu.com.resumebuilder.WebLocalViewActivity"
+            android:label="webview"
+            android:screenOrientation="landscape"
+            android:parentActivityName="cuny.edu.com.resumebuilder.MenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cuny.edu.com.resumebuilder.MenuActivity" />
+        </activity>
     </application>
 
 

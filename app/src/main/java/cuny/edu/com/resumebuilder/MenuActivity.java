@@ -1,6 +1,7 @@
 package cuny.edu.com.resumebuilder;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2_layout);
+        getWindow().getDecorView().setBackgroundColor(Color.LTGRAY);
         addListenerOnButtonResumeGenerator();
         addListenerOnButtonScheduler();
         addListenerOnButtonProfile();
@@ -57,7 +59,7 @@ public class MenuActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent().setClass(getApplicationContext(), Calendar2ViewActivity.class);
+                Intent intent = new Intent().setClass(getApplicationContext(), WebLocalViewActivity.class);
                 startActivity(intent);
 
             }

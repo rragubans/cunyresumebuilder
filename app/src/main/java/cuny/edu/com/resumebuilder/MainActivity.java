@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Education"));
         tabLayout.addTab(tabLayout.newTab().setText("Employment"));
         tabLayout.addTab(tabLayout.newTab().setText("View Resume"));
-        tabLayout.addTab(tabLayout.newTab().setText("Dynamic adding"));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -94,7 +93,5 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
-
-
 }
 

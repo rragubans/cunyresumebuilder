@@ -193,7 +193,6 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         saveTemplateEmploymentInformation();
     }
 
-
     public void saveTemplateEmploymentInformation() {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
@@ -202,8 +201,8 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         contentValues.put(RESUME_ID, 1);
 
         contentValues.put(COLUMN_EMPLOYMENT_WHEN, "when");
-        contentValues.put(COLUMN_EMPLOYMENT_WHEN, "where");
-        contentValues.put(COLUMN_EMPLOYMENT_WHEN, "description");
+        contentValues.put(COLUMN_EMPLOYMENT_WHERE, "where");
+        contentValues.put(COLUMN_EMPLOYMENT_DESCRIPTION, "description");
         long newRowId = db.insert(TABLE_EMPLOYMENT, null, contentValues);
         db.setTransactionSuccessful();
         db.endTransaction();
@@ -332,6 +331,24 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         db.endTransaction();
     }
 
+    public void deleteEmploymentFromDatabase(String item) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        System.out.println("EMPLOYMENT " + item);
+        db.delete(TABLE_EMPLOYMENT, COLUMN_EMPLOYMENT_WHERE + "= ?", new String[]{item});
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
+
+
+    public void deleteEducationFromDatabase(String item) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        db.delete(TABLE_EDUCATION, COLUMN_EMPLOYMENT_WHERE + "= ?", new String[]{item});
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
+
     public ResumeInformation findResume() {
         SQLiteDatabase db = getReadableDatabase();
 
@@ -360,7 +377,7 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-              employments.add(getEmployment(cursor));
+                employments.add(getEmployment(cursor));
             } while (cursor.moveToNext());
         }
 

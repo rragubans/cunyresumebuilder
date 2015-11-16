@@ -45,6 +45,16 @@
             android:layout_marginLeft="10dp"
             android:text="@string/add_employment"></Button>
 
+
+        <Button
+            android:id="@+id/buttonAdd3"
+            style="@style/button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:drawable/btn_plus"
+            android:text="@string/add_employment"></Button>
+
         <Button
             android:id="@+id/buttonRemove2"
             style="@style/button"
@@ -53,5 +63,24 @@
             android:layout_marginLeft="10dp"
             android:text="@string/removebutton"></Button>
     </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FC0"
+        android:gravity="center" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Capstone Resume Builder 2015"
+        android:textColor="#000"
+        android:textSize="20sp" />
+    </RelativeLayout>
+
 
 </RelativeLayout>

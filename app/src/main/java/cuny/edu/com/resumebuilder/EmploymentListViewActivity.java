@@ -3,12 +3,14 @@ package cuny.edu.com.resumebuilder;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +24,7 @@ public class EmploymentListViewActivity extends ListFragment {
 
     private List<String> list = new ArrayList<String>();
     private ArrayAdapter<String> adapter;
-
+    private ListView lv;
     private List<String> list2 = new ArrayList<String>();
 
     @Override
@@ -79,13 +81,26 @@ public class EmploymentListViewActivity extends ListFragment {
         button.setOnClickListener(listener);
         setListAdapter(adapter);
         adapter.setNotifyOnChange(true);
+
         return rootView;
     }
+
 
     @Override
     public void onResume() {
         super.onResume();
          adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                removeItemFromListPosition(position);
+            }
+        });
     }
 
     public void updateUI() {
@@ -97,6 +112,28 @@ public class EmploymentListViewActivity extends ListFragment {
         });
     }
 
+    public void removeItemFromListPosition(int position) {
+
+        final int deletePosition = position;
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+
+        alert.setTitle("Delete");
+        alert.setMessage("Do you want delete this item?");
+        alert.setNegativeButton("Cancel", null);
+
+        alert.setPositiveButton("YES", new AlertDialog.OnClickListener() {
+            @Override
+            public void onClick (DialogInterface dialog,int which){
+
+                String item = list.get(deletePosition);
+                list.remove(deletePosition);
+                deleteFromDatabase(item);
+                updateUI();
+            }
+        });
+        alert.show();
+    }
     public void saveEmploymentInformation(String when, String where, String description) {
 
         SQLLiteHelper sqlLiteHelper = SQLLiteHelper.getInstance();
@@ -111,8 +148,16 @@ public class EmploymentListViewActivity extends ListFragment {
                         " Company: "    + employment.getWhere();
             stringList.add(str);
         }
+    }
 
+    public void deleteFromDatabase(String item) {
+
+        int lastIndexOf = item.lastIndexOf(":");
+        String name = item.substring(lastIndexOf + 1);
+        SQLLiteHelper sqlLiteHelper = SQLLiteHelper.getInstance();
+        sqlLiteHelper.deleteEmploymentFromDatabase(name);
 
     }
+
 }
 
