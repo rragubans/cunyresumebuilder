@@ -17,8 +17,12 @@ public class TabFragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.tab_fragment_1, container, false);
         sqlLiteHelper = SQLLiteHelper.getInstance(getContext());
-        View submitButton = view.findViewById(R.id.buttonSendFeedback);
-        addClearButtonListener(view);
+
+        View buttonView = view.findViewById(R.id.buttonEditPersonalView);
+
+        View submitButton = buttonView.findViewById(R.id.buttonSendFeedback);
+
+        addClearButtonListener(buttonView, view);
 
         ((Button) submitButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,9 +41,9 @@ public class TabFragment1 extends Fragment {
         return view;
     }
 
-    private void addClearButtonListener(View view) {
-        View button = view.findViewById(R.id.buttonClear);
-        final ViewGroup viewGroup = (ViewGroup)view.findViewById(R.id.ScrollView01);
+    private void addClearButtonListener(View buttonView, View view) {
+        View button = buttonView.findViewById(R.id.buttonClear);
+        final ViewGroup viewGroup = (ViewGroup)view.findViewById(R.id.linearLayout1);
         ((Button) button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -106,7 +106,6 @@ public class ResumeGenerator {
         Chunk nameChunk = new Chunk(information.getName());
         paragraph.add(nameChunk);
         paragraph.add(Chunk.NEWLINE);
-        document.add(paragraph);
 
         Chunk addressChunk = new Chunk(information.getAddress() + "  ");
         paragraph.add(addressChunk);
@@ -140,7 +139,6 @@ public class ResumeGenerator {
         paragraph.add(Chunk.NEWLINE);
         document.add(paragraph);
 
-        System.out.println("Skills " + information.getSkills());
         document.add(addInfo(information.getSkills(), 20));
         document.add(new Chunk(new LineSeparator(1, 100, BaseColor.BLUE, Element.ALIGN_CENTER, -2)));
     }
@@ -163,7 +161,6 @@ public class ResumeGenerator {
         paragraph.add(Chunk.NEWLINE);
         document.add(paragraph);
 
-        System.out.println("getting employment " + information.getEmploymentLine1());
         int i = 1;
         for (Employment employment : employmentList) {
             String str = employment.getWhen() + ": " + employment.getWhere();

@@ -107,9 +107,9 @@
             android:layout_width="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:ems="25"
+            android:ems="10"
 
-            android:lines="10"></EditText>
+            android:lines="25"></EditText>
 
         <Button
             android:id="@+id/buttonSendFeedback"

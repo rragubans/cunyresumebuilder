@@ -101,7 +101,7 @@ public class PdfRendererBasicFragment extends Fragment implements View.OnClickLi
             closeRenderer();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+            }
         super.onDetach();
     }
 

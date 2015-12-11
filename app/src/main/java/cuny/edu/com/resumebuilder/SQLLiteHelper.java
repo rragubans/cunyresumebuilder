@@ -102,20 +102,6 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
             + COLUMN_OBJECTIVES       + " text not null, "
             + COLUMN_STRENGTH         + " text not null, "
             + COLUMN_HOBBIES          + " text not null,"
-            + COLUMN_EDUCATION_LINE1  + " text not null, "
-            + COLUMN_EDUCATION_LINE2  + " text not null, "
-            + COLUMN_EDUCATION_LINE3  + " text not null, "
-            + COLUMN_EDUCATION_LINE4  + " text not null, "
-            + COLUMN_EDUCATION_LINE5  + " text not null, "
-            + COLUMN_EDUCATION_LINE6  + " text not null, "
-            + COLUMN_EDUCATION_LINE7  + " text not null, "
-            + COLUMN_EMPLOYMENT_LINE1 + " text not null, "
-            + COLUMN_EMPLOYMENT_LINE2 + " text not null, "
-            + COLUMN_EMPLOYMENT_LINE3 + " text not null, "
-            + COLUMN_EMPLOYMENT_LINE4 + " text not null, "
-            + COLUMN_EMPLOYMENT_LINE5 + " text not null, "
-            + COLUMN_EMPLOYMENT_LINE6 + " text not null, "
-            + COLUMN_EMPLOYMENT_LINE7 + " text not null, "
             + COLUMN_SKILLS           + " text not null);";
 
 
@@ -171,26 +157,12 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_OBJECTIVES, "TST1");
         contentValues.put(COLUMN_STRENGTH,  "_strength");
         contentValues.put(COLUMN_HOBBIES,   "_hobbies");
-        contentValues.put(COLUMN_EDUCATION_LINE1, "_education1");
-        contentValues.put(COLUMN_EDUCATION_LINE2, "_education2");
-        contentValues.put(COLUMN_EDUCATION_LINE3, "_education3");
-        contentValues.put(COLUMN_EDUCATION_LINE4, "_education4");
-        contentValues.put(COLUMN_EDUCATION_LINE5, "_education5");
-        contentValues.put(COLUMN_EDUCATION_LINE6, "_education6");
-        contentValues.put(COLUMN_EDUCATION_LINE7, "_education7");
-        contentValues.put(COLUMN_EMPLOYMENT_LINE1, "_employment1");
-        contentValues.put(COLUMN_EMPLOYMENT_LINE2, "_employment2");
-        contentValues.put(COLUMN_EMPLOYMENT_LINE3, "_employment3");
-        contentValues.put(COLUMN_EMPLOYMENT_LINE4, "_employment4");
-        contentValues.put(COLUMN_EMPLOYMENT_LINE5, "_employment5");
-        contentValues.put(COLUMN_EMPLOYMENT_LINE6, "_employment6");
-        contentValues.put(COLUMN_EMPLOYMENT_LINE7, "_employment7");
         contentValues.put(COLUMN_SKILLS, "_skills");
 
         long newRowId = db.insert(TABLE_RESUME, null, contentValues);
         db.setTransactionSuccessful();
         db.endTransaction();
-        saveTemplateEmploymentInformation();
+//        saveTemplateEmploymentInformation();
     }
 
     public void saveTemplateEmploymentInformation() {
@@ -232,66 +204,6 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
             db.setTransactionSuccessful();
 
         } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            db.endTransaction();
-        }
-        close();
-    }
-
-
-    public void saveEducationInformation(ResumeInformation resumeInformation) {
-        SQLiteDatabase db = getWritableDatabase();
-        try {
-            db.beginTransaction();
-
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(COLUMN_EDUCATION_LINE1, resumeInformation.getEducationLine1());
-            contentValues.put(COLUMN_EDUCATION_LINE2, resumeInformation.getEducationLine2());
-            contentValues.put(COLUMN_EDUCATION_LINE3, resumeInformation.getEducationLine3());
-            contentValues.put(COLUMN_EDUCATION_LINE4, resumeInformation.getEducationLine4());
-            contentValues.put(COLUMN_EDUCATION_LINE5, resumeInformation.getEducationLine5());
-            contentValues.put(COLUMN_EDUCATION_LINE6, resumeInformation.getEducationLine6());
-            contentValues.put(COLUMN_EDUCATION_LINE7, resumeInformation.getEducationLine7());
-
-            long newRowId = db.update(TABLE_RESUME, contentValues, "_id = " + 1, null);
-            db.setTransactionSuccessful();
-        } catch(Exception e) {
-            e.printStackTrace();
-        } finally {
-            db.endTransaction();
-        }
-        close();
-    }
-
-
-    public void saveEmploymentInformation(ResumeInformation resumeInformation) {
-        SQLiteDatabase db = getWritableDatabase();
-        try {
-            db.beginTransaction();
-            ContentValues contentValues = new ContentValues();
-            int i=1;
-            String[] employmentLines = new String[6];
-
-            for (Employment employment : resumeInformation.getEmployments()) {
-                String employmentLine = employment.getWhere() + "|" + employment.getWhen() + "|" +
-                                employment.getDescription();
-                employmentLines[i] = employmentLine;
-            }
-
-
-        contentValues.put(COLUMN_EMPLOYMENT_LINE1, employmentLines[0]);
-        contentValues.put(COLUMN_EMPLOYMENT_LINE2, resumeInformation.getEmploymentLine2());
-        contentValues.put(COLUMN_EMPLOYMENT_LINE3, resumeInformation.getEmploymentLine3());
-        contentValues.put(COLUMN_EMPLOYMENT_LINE4, resumeInformation.getEmploymentLine4());
-        contentValues.put(COLUMN_EMPLOYMENT_LINE5, resumeInformation.getEmploymentLine5());
-        contentValues.put(COLUMN_EMPLOYMENT_LINE6, resumeInformation.getEmploymentLine6());
-        contentValues.put(COLUMN_EMPLOYMENT_LINE7, resumeInformation.getEmploymentLine7());
-        contentValues.put(COLUMN_SKILLS, resumeInformation.getSkills());
-
-        long newRowId = db.update(TABLE_RESUME, contentValues, "_id = " + 1, null);
-            db.setTransactionSuccessful();
-        } catch(Exception e){
             e.printStackTrace();
         } finally {
             db.endTransaction();
@@ -417,24 +329,7 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         information.addCareerObjectives(cursor.getString(9));
         information.setStrength(cursor.getString(10));
         information.setHobbies(cursor.getString(11));
-        information.setEducationLine1(cursor.getString(12));
-        information.setEducationLine2(cursor.getString(13));
-        information.setEducationLine3(cursor.getString(14));
-        information.setEducationLine4(cursor.getString(15));
-        information.setEducationLine5(cursor.getString(16));
-        information.setEducationLine6(cursor.getString(17));
-        information.setEducationLine7(cursor.getString(18));
-
-        String str = cursor.getString(19);
-
-        information.setEmploymentLine1(cursor.getString(19));
-        information.setEmploymentLine2(cursor.getString(20));
-        information.setEmploymentLine3(cursor.getString(21));
-        information.setEmploymentLine4(cursor.getString(22));
-        information.setEmploymentLine5(cursor.getString(23));
-        information.setEmploymentLine6(cursor.getString(24));
-        information.setEmploymentLine7(cursor.getString(25));
-        information.setSkills(cursor.getString(26));
+        information.setSkills(cursor.getString(12));
 
 
         System.out.println("Object hydrated " + information);

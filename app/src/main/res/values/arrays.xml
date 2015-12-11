@@ -5,4 +5,29 @@
         <item>@string/gender2</item>
     </string-array>
 
+
+    <string-array name="semester">
+        <item>Spring</item>
+        <item>Summer</item>
+        <item>Fall</item>
+        <item>Winter</item>
+    </string-array>
+
+    <string-array name="major">
+        <item>CSCI</item>
+        <item>Summer</item>
+        <item>Fall</item>
+        <item>Winter</item>
+    </string-array>
+
+    <string-array name="collegeList">
+        <item>Hunter</item>
+        <item>Baruch</item>
+        <item>Queens College</item>
+        <item>Medgar Evans</item>
+        <item>City College</item>
+        <item>York College</item>
+        <item>John Jay College</item>
+    </string-array>
+
 </resources>

@@ -4,6 +4,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
+
     defaultConfig {
         applicationId "cuny.edu.com.resumebuilder"
         minSdkVersion 21
@@ -24,6 +25,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.squareup:android-times-square:1.6.4'
     compile 'com.android.support:design:23.0.0'
+    compile 'javax.servlet:javax.servlet-api:3.0.1'
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
 }
 

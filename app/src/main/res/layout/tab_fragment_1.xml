@@ -7,12 +7,11 @@
     android:fillViewport="true"
     android:scrollbars="vertical">
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="1"
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
         android:orientation="vertical"
-        android:useDefaultMargins="true" >
+        android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/EditTextName"
@@ -109,27 +108,35 @@
             android:layout_width="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:ems="5"
+            android:ems="10"
+            android:lines="7"></EditText>
 
-            android:lines="10"></EditText>
-
-        <Button
-            android:id="@+id/buttonSendFeedback"
+        <LinearLayout
+            android:id="@+id/buttonEditPersonalView"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/feedbackbutton"
-            style="@style/button"
+            android:layout_gravity="center"
+            android:weightSum="1">
 
-            android:onClick="sendFeedback"
-            android:layout_width="fill_parent"></Button>
+            <Button
+                android:id="@+id/buttonSendFeedback"
+                android:layout_height="wrap_content"
+                android:text="@string/save"
+                style="@style/button"
+                android:layout_gravity="center_horizontal"
+                android:onClick="sendFeedback"
+                android:layout_width="100dp"></Button>
 
-        <Button
-            android:id="@+id/buttonClear"
-            android:layout_height="wrap_content"
-            android:text="@string/clearbutton"
-            style="@style/button"
-            android:onClick="sendFeedback"
-            android:layout_width="fill_parent"></Button>
+            <Button
+                android:id="@+id/buttonClear"
+                android:layout_height="wrap_content"
+                android:text="@string/clearbutton"
+                style="@style/button"
+                android:layout_gravity="center_horizontal"
+                android:onClick="sendFeedback"
+                android:layout_width="100dp"></Button>
 
+            </LinearLayout>
+    </LinearLayout>
 
-    </GridLayout>
 </ScrollView>

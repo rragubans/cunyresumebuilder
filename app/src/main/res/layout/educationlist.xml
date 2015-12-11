@@ -35,6 +35,7 @@
         android:layout_gravity="center_horizontal"
         android:weightSum="1">
 
+<!--
 
         <Button
             android:id="@+id/buttonAdd2"
@@ -44,24 +45,25 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="10dp"
             android:text="@string/add_employment"></Button>
+-->
 
 
         <Button
-            android:id="@+id/buttonAdd3"
-            style="@style/button"
+            android:id="@+id/buttonAdd2"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:background="@android:drawable/btn_plus"
             android:text="@string/add_employment"></Button>
 
+<!--
         <Button
             android:id="@+id/buttonRemove2"
             style="@style/button"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="@string/removebutton"></Button>
+            android:text="@string/removebutton"></Button>-->
     </LinearLayout>
 
 

@@ -11,6 +11,7 @@
     <string name="city">City </string>
     <string name="state">State </string>
     <string name="zipcode">zip </string>
+    <string  name="upload">Please select files to upload:</string>
 
     <string name="feedbackemail">Email </string>
     <string name="feedbackbutton">Save Personal Information</string>
@@ -29,6 +30,8 @@
     <string name="hobbies">Hobbies</string>
     <string name="gender1">M(ale)</string>
     <string name="gender2">F(emale)</string>
+
+    <string name="Professor">Professor Name</string>
 
     <string name="education_line1">Education Line1:</string>
     <string name="education_line2">Education Line2:</string>
@@ -75,4 +78,7 @@
     <string name="lblbtndel">Delete</string>
 
     <string name="service_name">WebServer</string>
+    <string name="main_no_items">No orders to display</string>
+
+
 </resources>

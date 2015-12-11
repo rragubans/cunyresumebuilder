@@ -19,6 +19,7 @@ public class MenuActivity extends AppCompatActivity {
         addListenerOnButtonResumeGenerator();
         addListenerOnButtonScheduler();
         addListenerOnButtonProfile();
+        addListenerOnButtonProfileUpload();
     }
 
 
@@ -53,6 +54,21 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
     }
+/*
+
+    private void addListenerOnButtonProfile() {
+        Button button = (Button) findViewById(R.id.button3);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent().setClass(getApplicationContext(), WebLocalViewActivity.class);
+                startActivity(intent);
+
+            }
+        });
+    }
+*/
+
 
     private void addListenerOnButtonProfile() {
         Button button = (Button) findViewById(R.id.button3);
@@ -66,5 +82,17 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+
+    private void addListenerOnButtonProfileUpload() {
+        Button button = (Button) findViewById(R.id.button4);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent().setClass(getApplicationContext(), CourseSearchActivity.class);
+                startActivity(intent);
+
+            }
+        });
+    }
 }
 
