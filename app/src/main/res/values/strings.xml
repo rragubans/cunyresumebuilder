@@ -78,7 +78,7 @@
     <string name="lblbtndel">Delete</string>
 
     <string name="service_name">WebServer</string>
-    <string name="main_no_items">No orders to display</string>
+    <string name="main_no_items">No classes to display</string>
 
 
 </resources>

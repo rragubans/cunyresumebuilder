@@ -4,48 +4,133 @@
     android:layout_gravity="center_vertical|center_horizontal"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button1"
-        style="@style/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="Resume Generator"
-        android:layout_weight="1"
-        android:textSize="20sp"/>
 
-    <Button
-        android:id="@+id/button2"
-        style="@style/button"
+    <TextView
+        android:id="@+id/myImage1ViewText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="Schedule       "
-        android:layout_weight="1"
-        android:textSize="20sp"/>
+        android:layout_alignLeft="@+id/image1"
+        android:layout_alignTop="@+id/image1"
+        android:layout_alignRight="@+id/image1"
+        android:layout_alignBottom="@+id/image1"
+        android:layout_margin="1dp"
+        android:gravity="center"
+        android:text="Resume"
+        android:textColor="#000000" />
 
-    <Button
-        android:id="@+id/button3"
-        style="@style/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="Local Schedule "
-        android:layout_weight="1"
-        android:textSize="20sp"/>
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Resume Generator"
+        android:src="@drawable/resume" />
 
-    <Button
-        android:id="@+id/button4"
-        style="@style/button"
+    <TextView
+        android:id="@+id/myImage2ViewText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="Schedule-Builder "
-        android:layout_weight="1"
-        android:textSize="20sp"/>
+        android:layout_alignLeft="@+id/image2"
+        android:layout_alignTop="@+id/image2"
+        android:layout_alignRight="@+id/image2"
+        android:layout_alignBottom="@+id/image2"
+        android:layout_margin="1dp"
+        android:gravity="center"
+        android:text="Schedule"
+        android:textColor="#000000" />
+
+    <ImageView
+        android:id="@+id/image2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/schedule" />
+
+
+    <TextView
+        android:id="@+id/myImage3ViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/image3"
+        android:layout_alignTop="@+id/image3"
+        android:layout_alignRight="@+id/image3"
+        android:layout_alignBottom="@+id/image3"
+        android:layout_margin="1dp"
+        android:gravity="center"
+        android:text="Web Schedule"
+        android:textColor="#000000" />
+
+    <ImageView
+        android:id="@+id/image3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/web" />
+
+
+    <TextView
+        android:id="@+id/myImage4ViewText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/image4"
+        android:layout_alignTop="@+id/image4"
+        android:layout_alignRight="@+id/image4"
+        android:layout_alignBottom="@+id/image4"
+        android:layout_margin="1dp"
+        android:gravity="center"
+        android:text="Local Web Schedule"
+        android:textColor="#000000" />
+
+
+    <ImageView
+        android:id="@+id/image4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/web" />
+
+    <!--
+
+
+        <Button
+            android:id="@+id/button1"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Resume Generator"
+            android:layout_weight="1"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Schedule       "
+            android:layout_weight="1"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/button3"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Local Schedule "
+            android:layout_weight="1"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/button4"
+            style="@style/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Schedule-Builder "
+            android:layout_weight="1"
+            android:textSize="20sp"/>
+    -->
 
 </LinearLayout>

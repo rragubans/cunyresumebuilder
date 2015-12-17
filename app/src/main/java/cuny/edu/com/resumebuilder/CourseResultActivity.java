@@ -1,8 +1,10 @@
 package cuny.edu.com.resumebuilder;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,34 +25,31 @@ import java.util.List;
 public class CourseResultActivity extends AppCompatActivity {
 
     private CourseResultAdapter dataAdapter = null;
+    private ProgressDialog m_ProgressDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.course_search_results);
+        setTitle("========= Course Result ==========");
+        m_ProgressDialog = ProgressDialog.show(CourseResultActivity.this,
+                "Please wait...", "Searching for Classes ...", true);
+        m_ProgressDialog.setCanceledOnTouchOutside(true);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                m_ProgressDialog.dismiss();
+            }
+        }, 1000);
+
+
         displayListView();
     }
 
     public void displayListView() {
 
-        List<CourseResult> results = getResults();
-        /*CourseResult header = new CourseResult();
-        header.setInstructor("Instructor");
-        header.setCourseNumber("Number");
-        header.setCourseName("Name");
-        header.setSchedule("Schedule");
-        header.setSection("Section");
-        results.add(header);
-        for (int i=0; i < 20; i++) {
-            CourseResult result = new CourseResult();
-            result.setCourseNumber(String.valueOf(i));
-            result.setCourseName("Name " + i);
-            result.setInstructor("Wishes" + i);
-            result.setSchedule("Mon and Wed") ;
-            results.add(result);
-        }
-*/
-        dataAdapter = new CourseResultAdapter(this, R.layout.course_search_result_list, results);
+        dataAdapter = new CourseResultAdapter(this, R.layout.course_search_result_list, getResults());
 
         ListView listView = (ListView) findViewById(R.id.listView1);
 
@@ -59,9 +58,9 @@ public class CourseResultActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                CourseResult courseResult = (CourseResult) parent.getItemAtPosition(position);
+                ClassData courseResult = (ClassData) parent.getItemAtPosition(position);
                 Toast.makeText(getApplicationContext(),
-                        "Clicked on Row: " + courseResult.getCourseName() + " " + courseResult.getSchedule(),
+                        "Clicked on Row: " + courseResult.getName() + " " + courseResult.getTime(),
                         Toast.LENGTH_LONG).show();
                 startScheduleActivity();
             }
@@ -81,60 +80,9 @@ public class CourseResultActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public List<CourseResult> getResults() {
+    public List<ClassData> getResults() {
 
-        List<CourseResult> results = new ArrayList<>();
-
-        CourseResult courseResult = new CourseResult();
-        courseResult.setCourseNumber("A100");
-        courseResult.setSection("B100");
-        courseResult.setCourseNumber("100");
-        courseResult.setSchedule("Mon and Wed 10:00 AM - 11:15 AM");
-        courseResult.setInstructor("Prof: Bill");
-        courseResult.setCourseName("Introduction to Discrete Math");
-
-        results.add(courseResult);
-
-        courseResult = new CourseResult();
-        courseResult.setCourseNumber("A101");
-        courseResult.setSection("B101");
-        courseResult.setCourseNumber("101");
-        courseResult.setSchedule("Tues and Thurs 10:00 AM - 11:15 AM");
-        courseResult.setInstructor("Prof: Kara");
-        courseResult.setCourseName("Computer Architecture 1");
-        results.add(courseResult);
-
-        courseResult = new CourseResult();
-        courseResult.setCourseNumber("A102");
-        courseResult.setSection("B102");
-        courseResult.setCourseNumber("102");
-        courseResult.setSchedule("Fri 5:00 PM - 8:30 PM");
-        courseResult.setInstructor("Prof: Kara");
-        courseResult.setCourseName("Computer Architecture 2");
-        results.add(courseResult);
-
-
-        courseResult = new CourseResult();
-        courseResult.setCourseNumber("A102");
-        courseResult.setSection("B102");
-        courseResult.setCourseNumber("102");
-        courseResult.setSchedule("Fri 5:00 PM - 8:30 PM");
-        courseResult.setInstructor("Prof: Kara");
-        courseResult.setCourseName("Computer Architecture 3");
-        results.add(courseResult);
-
-
-
-        courseResult = new CourseResult();
-        courseResult.setCourseNumber("A102");
-        courseResult.setSection("B102");
-        courseResult.setCourseNumber("102");
-        courseResult.setSchedule("Mon and Wed 5:00 PM - 6:15 PM");
-        courseResult.setInstructor("Prof: Kara");
-        courseResult.setCourseName("Unix Application Programming");
-        results.add(courseResult);
-
-        return results;
+        return SQLLiteHelper.getInstance(getBaseContext()).findAllClassData();
     }
 
 }

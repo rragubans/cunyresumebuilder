@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 
 public class MenuActivity extends AppCompatActivity {
@@ -34,6 +35,16 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void addListenerOnButtonResumeGenerator() {
+        ImageView imageView = (ImageView) findViewById(R.id.image1);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent().setClass(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+/*
+
         Button button = (Button) findViewById(R.id.button1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,9 +53,20 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+*/
     }
 
     private void addListenerOnButtonScheduler() {
+        ImageView imageView = (ImageView) findViewById(R.id.image3);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent().setClass(getApplicationContext(), WebViewActivity.class);
+                startActivity(intent);
+            }
+        });
+/*
+
         Button button = (Button) findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +75,7 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+*/
     }
 /*
 
@@ -71,7 +94,16 @@ public class MenuActivity extends AppCompatActivity {
 
 
     private void addListenerOnButtonProfile() {
-        Button button = (Button) findViewById(R.id.button3);
+        ImageView imageView = (ImageView) findViewById(R.id.image4);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent().setClass(getApplicationContext(), WebLocalViewActivity.class);
+                startActivity(intent);
+            }
+        });
+
+       /* Button button = (Button) findViewById(R.id.button3);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,11 +111,21 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        });
+        });*/
     }
 
 
     private void addListenerOnButtonProfileUpload() {
+        ImageView imageView = (ImageView) findViewById(R.id.image2);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent().setClass(getApplicationContext(), CourseSearchActivity.class);
+                startActivity(intent);
+            }
+        });
+
+/*
         Button button = (Button) findViewById(R.id.button4);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +135,7 @@ public class MenuActivity extends AppCompatActivity {
 
             }
         });
+        */
     }
 }
 

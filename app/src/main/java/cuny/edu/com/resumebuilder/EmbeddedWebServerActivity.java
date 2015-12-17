@@ -20,7 +20,7 @@ public class EmbeddedWebServerActivity extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.webView);
         webView.setWebViewClient(new MyWebViewClient());
         AssetManager mgr = getBaseContext().getAssets();
-        String url = "http://safe-dusk-8588.herokuapp.com/";
+        String url = "http://cunyprime.herokuapp.com/";
 
         //String url = "file:///android_asset/www/index.html";
         webView.getSettings().setJavaScriptEnabled(true);

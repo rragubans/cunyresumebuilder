@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class EducationListViewActivity extends ListFragment {
         final View rootView = inflater.inflate(R.layout.educationlist, container, false);
         final View view2    = rootView.findViewById(R.id.buttonlistView);
         Button button       = (Button) view2.findViewById(R.id.buttonAdd2);
+
         list.add(" ");
         getEducationData(list);
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list);

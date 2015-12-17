@@ -44,7 +44,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="10dp"
             android:text="@string/add_employment"></Button>
-
+<!--
         <Button
             android:id="@+id/buttonRemove2"
             style="@style/button"
@@ -52,6 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="@string/removebutton"></Button>
+        -->
     </LinearLayout>
 
 

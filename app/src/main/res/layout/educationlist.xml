@@ -47,13 +47,12 @@
             android:text="@string/add_employment"></Button>
 -->
 
-
         <Button
             android:id="@+id/buttonAdd2"
+            style="@style/button"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@android:drawable/btn_plus"
             android:text="@string/add_employment"></Button>
 
 <!--

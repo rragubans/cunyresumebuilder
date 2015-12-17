@@ -5,16 +5,22 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SQLLiteHelper extends SQLiteOpenHelper {
 
+    private static int id = 1;
     public static final String TABLE_RESUME     = "resume";
     public static final String TABLE_EDUCATION  = "education";
     public static final String TABLE_EMPLOYMENT = "employment";
     public static final String TABLE_OBJECTIVE  = "objective";
+    public static final String TABLE_CLASS_SCHEDULE  = "class_schedule";
+    public static final String TABLE_SELECTED_CLASS_SCHEDULE  = "selected_schedule";
+
+
 
     public static final String RESUME_ID = "res_id";
     public static final String COLUMN_ID = "_id";
@@ -60,6 +66,21 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_EMPLOYMENT_LINE6 = "employment_6";
     public static final String COLUMN_EMPLOYMENT_LINE7 = "employment_7";
 
+    public static final String COLUMN_DEPT       = "dept";
+    public static final String COLUMN_CLASS_NAME = "name";
+    public static final String COLUMN_INSTRUCTOR = "instructor";
+    public static final String COLUMN_START_TIME = "start_time";
+    public static final String COLUMN_END_TIME   = "end_time";
+    public static final String COLUMN_DAYS       = "days";
+    public static final String COLUMN_ROOM       = "room";
+    public static final String COLUMN_REQ        = "req";
+    public static final String COLUMN_DESC       = "desc";
+    public static final String COLUMN_COMP       = "comp";
+    public static final String COLUMN_PREREQ     = "prerequisite";
+    public static final String COLUMN_CREDITS    = "credits";
+
+
+    //
     private static final String DATABASE_NAME = "resume.db";
     private static final int DATABASE_VERSION = 1;
     private static SQLLiteHelper instance = null;
@@ -105,6 +126,39 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
             + COLUMN_SKILLS           + " text not null);";
 
 
+    private static final String DATABASE_CREATE_CLASS_SCHEDULE = "create table " + TABLE_CLASS_SCHEDULE
+            + "("
+            + COLUMN_ID                  + " integer primary key autoincrement, "
+            + COLUMN_DEPT                + " text not null,"
+            + COLUMN_CLASS_NAME          + " text not null,"
+            + COLUMN_INSTRUCTOR          + " text not null,"
+            + COLUMN_START_TIME          + " text not null,"
+            + COLUMN_END_TIME            + " text not null,"
+            + COLUMN_DAYS                + " text not null,"
+            + COLUMN_ROOM                + " text not null,"
+            + COLUMN_REQ                 + " text not null,"
+            + COLUMN_DESC                + " text not null,"
+            + COLUMN_COMP                + " text not null,"
+            + COLUMN_PREREQ              + " text not null,"
+            + COLUMN_CREDITS             + " text not null);";
+
+
+    private static final String DATABASE_CREATE_SELECTED_SCHEDULE = "create table " + TABLE_SELECTED_CLASS_SCHEDULE
+            + "("
+            + COLUMN_ID                  + " integer primary key autoincrement, "
+            + COLUMN_DEPT                + " text not null,"
+            + COLUMN_CLASS_NAME          + " text not null,"
+            + COLUMN_INSTRUCTOR          + " text not null,"
+            + COLUMN_START_TIME          + " text not null,"
+            + COLUMN_END_TIME            + " text not null,"
+            + COLUMN_DAYS                + " text not null,"
+            + COLUMN_ROOM                + " text not null,"
+            + COLUMN_REQ                 + " text not null,"
+            + COLUMN_DESC                + " text not null,"
+            + COLUMN_COMP                + " text not null,"
+            + COLUMN_PREREQ              + " text not null,"
+            + COLUMN_CREDITS             + " text not null);";
+
     public static SQLLiteHelper getInstance() {
         return instance;
     }
@@ -128,10 +182,16 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS education");
         db.execSQL("DROP TABLE IF EXISTS employment");
         db.execSQL("DROP TABLE IF EXISTS objective");
+        db.execSQL("DROP TABLE IF EXISTS class_schedule");
+        db.execSQL("DROP TABLE IF EXISTS selected_schedule");
+
         db.execSQL(DATABASE_CREATE);
         db.execSQL(DATABASE_CREATE_EDUCATION);
         db.execSQL(DATABASE_CREATE_EMPLOYMENT);
         db.execSQL(DATABASE_CREATE_OBJECTIVES);
+        db.execSQL(DATABASE_CREATE_CLASS_SCHEDULE);
+        db.execSQL(DATABASE_CREATE_SELECTED_SCHEDULE);
+
     }
 
     @Override
@@ -152,7 +212,7 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
         contentValues.put(COLUMN_CITY,      "_city");
         contentValues.put(COLUMN_STATE,     "_state");
         contentValues.put(COLUMN_ZIP,       "_zip");
-        contentValues.put(COLUMN_EMAIL,     "_email");
+        contentValues.put(COLUMN_EMAIL, "_email");
         contentValues.put(COLUMN_LANGUAGES, "_languages");
         contentValues.put(COLUMN_OBJECTIVES, "TST1");
         contentValues.put(COLUMN_STRENGTH,  "_strength");
@@ -370,4 +430,159 @@ public class SQLLiteHelper extends SQLiteOpenHelper {
 
         return null;
     }
+
+    private static int getNextId() {
+        return id++;
+    }
+
+
+    public void deleteAllCourseData() {
+        deleteAllSelectedCourseData();
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+
+            db.beginTransaction();
+            int deletedRows = db.delete(TABLE_CLASS_SCHEDULE, "1", null);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+        }
+
+    }
+
+    public void deleteAllSelectedCourseData() {
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+
+            db.beginTransaction();
+            int deletedRows = db.delete(TABLE_SELECTED_CLASS_SCHEDULE, "1", null);
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+        }
+    }
+
+    public void saveCourseData(ClassData schedule) {
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+
+            db.beginTransaction();
+            ContentValues contentValues = getContentValues(schedule);
+
+            long newRowId = db.insert(TABLE_CLASS_SCHEDULE, null, contentValues);
+            db.setTransactionSuccessful();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+        }
+        close();
+    }
+
+
+    public void saveSelectedCourseData(ClassData schedule) {
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+
+            db.beginTransaction();
+
+            ContentValues contentValues = getContentValues(schedule);
+
+            long newRowId = db.insert(TABLE_SELECTED_CLASS_SCHEDULE, null, contentValues);
+            db.setTransactionSuccessful();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+        }
+        close();
+    }
+
+    @NonNull
+    private ContentValues getContentValues(ClassData schedule) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_ID, getNextId());
+        contentValues.put(COLUMN_DEPT,       schedule.getDept());
+        contentValues.put(COLUMN_CLASS_NAME, schedule.getName());
+        contentValues.put(COLUMN_INSTRUCTOR, schedule.getInstructor());
+        contentValues.put(COLUMN_START_TIME, schedule.getTime());
+        contentValues.put(COLUMN_END_TIME,   schedule.getEndTime());
+        contentValues.put(COLUMN_DAYS,       schedule.getDays());
+        contentValues.put(COLUMN_ROOM,       schedule.getRoom());
+        contentValues.put(COLUMN_REQ,        schedule.getReq());
+        contentValues.put(COLUMN_DESC,       schedule.getDesc());
+        contentValues.put(COLUMN_COMP,       schedule.getComp());
+        contentValues.put(COLUMN_PREREQ,     schedule.getPrerequisite());
+        contentValues.put(COLUMN_CREDITS,    schedule.getCredits());
+        return contentValues;
+    }
+
+    public List<ClassData> findAllClassData() {
+
+        List<ClassData> dataList = new ArrayList<>();
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_CLASS_SCHEDULE;
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                ClassData classData = setClassDataObjectStateFrom(cursor);
+                dataList.add(classData);
+            } while (cursor.moveToNext());
+        }
+
+        return dataList;
+    }
+
+
+    public List<ClassData> findAllSelectedClassData() {
+
+        List<ClassData> dataList = new ArrayList<>();
+
+        SQLiteDatabase db = getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_SELECTED_CLASS_SCHEDULE;
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                ClassData classData = setClassDataObjectStateFrom(cursor);
+                dataList.add(classData);
+            } while (cursor.moveToNext());
+        }
+
+        return dataList;
+    }
+
+    private ClassData setClassDataObjectStateFrom(Cursor cursor) {
+
+        ClassData information = new ClassData();
+        information.setCredits(cursor.getString(cursor.getColumnIndex(COLUMN_CREDITS)));
+        information.setInstructor(cursor.getString(cursor.getColumnIndex(COLUMN_INSTRUCTOR)));
+        information.setRoom(cursor.getString(cursor.getColumnIndex(COLUMN_ROOM)));
+        information.setDays(cursor.getString(cursor.getColumnIndex(COLUMN_DAYS)));
+        information.setEndTime(cursor.getString(cursor.getColumnIndex(COLUMN_END_TIME)));
+        information.setTime(cursor.getString(cursor.getColumnIndex(COLUMN_START_TIME)));
+        information.setComp(cursor.getString(cursor.getColumnIndex(COLUMN_COMP)));
+        information.setDept(cursor.getString(cursor.getColumnIndex(COLUMN_DEPT)));
+        information.setDesc(cursor.getString(cursor.getColumnIndex(COLUMN_DESC)));
+        information.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+        information.setReq(cursor.getString(cursor.getColumnIndex(COLUMN_REQ)));
+        information.setPrerequisite(cursor.getString(cursor.getColumnIndex(COLUMN_PREREQ)));
+
+        System.out.println("Object hydrated " + information);
+        return information;
+
+    }
+
 }

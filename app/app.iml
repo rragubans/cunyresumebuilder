@@ -94,9 +94,13 @@
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="itextg-5.5.5" level="project" />
+    <orderEntry type="library" exported="" name="httpclient-4.4.1.1" level="project" />
     <orderEntry type="library" exported="" name="android-pdfview-1.0.4" level="project" />
+    <orderEntry type="library" exported="" name="javax.servlet-api-3.0.1" level="project" />
     <orderEntry type="library" exported="" name="support-v4-23.0.1" level="project" />
     <orderEntry type="library" exported="" name="android-times-square-1.6.4" level="project" />
+    <orderEntry type="library" exported="" name="jetty-all-server-8.1.18.v20150929" level="project" />
+    <orderEntry type="library" exported="" name="android-async-http-1.4.9" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.0.1" level="project" />
     <orderEntry type="library" exported="" name="design-23.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.0.1" level="project" />

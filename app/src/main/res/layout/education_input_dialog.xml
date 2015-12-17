@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="1dp"
         android:background="@drawable/editextstyle2"
-        android:hint="When"
+        android:hint="Date"
         android:padding="10dp" />
 
 
@@ -28,7 +28,7 @@
         android:id="@+id/EditTextWhere"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Where"
+        android:hint="Institution"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:background="@drawable/editextstyle2"
@@ -44,6 +44,5 @@
         android:background="@drawable/editextstyle2"
         android:hint="Description"
         android:padding="10dp" />
-
 
 </LinearLayout>
